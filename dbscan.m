@@ -1,10 +1,10 @@
 function [labels] = dbscan(data, eps, MinPts)
 
-% inputs: Matrix of size (N x D) where N is number of points and d is dimensionality.
+% inputs: matrix of size (N x D) where N is number of points and d is dimensionality.
 % eps:    the max distance to consider for the neighborhoor
-% MinPts: The minimum number of points needed to form a dense region. 
+% minPts: The minimum number of points needed to form a dense region. 
 
-% Output: A vector of size (N x 1) containing the cluster ID for each point
+% output: A vector of size (N x 1) containing the cluster ID for each point
 % 0 indicates a noise point
 
     N = size(data, 1);
@@ -62,7 +62,7 @@ function [labels] = dbscan(data, eps, MinPts)
                     % (only those that are unvisited or marked as noise)
                     for n_idx = current_neighbors_idx
                         if labels(n_idx) <= 0 % unvisited (0) or noise (-1)
-                            % Change noise points (-1) to Border points (cluster_id)
+                            % change noise points (-1) to border points (cluster_id)
                             % Add unvisited points (0) to the seed set
                             if labels(n_idx) == 0
                                 seed_set(end+1) = n_idx; % Add to seed_set so the while loop will process it next
